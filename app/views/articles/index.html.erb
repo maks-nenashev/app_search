@@ -1,0 +1,44 @@
+<%# provide :page_title, 'Articles' %> <!Podpis w ikonre "Kakaja stranica">
+<!% currently_art "Articles" %>
+
+<h2 class="mb-4">List of articles!</h2>  <!# Wywod wsech zapisej!>
+<p>
+<%= link_to "New article", new_article_path,class: "btn btn-primary btn-lg" %>
+</p>
+<div class="container">
+<% @articles.each do |article| %>
+     <!article class="card mt-3">
+     <!div class="card-body">
+  <h4>
+  <%= link_to article.title, article_path(article) %>
+  </h4>
+
+  <p class="my-2">
+  <%= link_to image_tag(article.image, style: "width: 380px; height: auto", class: 'img-thumbnail thumb'), article_path(article)%>
+  </p>           
+  
+  <h4 class="my-2">
+  <%= article.text %>
+  </h4>
+        <section class="card-text">
+           <! Podkluchenie time pod soobzheniem!>
+  <time datetime="<%= article.created_at.strftime("%Y-%m-%d %H:%M:%S")%>">
+  <%= article.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+  </time>  
+           </section>            
+   <hr>
+                     <!Ssylka na statью>
+  <p><!%= link_to "New article", new_article_path(article),class: "btn btn-primary" %> 
+     <%= link_to  "Show article", article_path(article),class: "btn btn-primary btn-sm"%>  
+     <%= link_to  "Edit article", edit_article_path(article),class: "btn btn-secondary btn-sm"%> 
+     <%= link_to 'Delete', article_path(article), data: {'turbo-method': :delete,'turbo-confirm': 
+     'Are you sure?'}, class:"btn btn-danger btn-sm"%>
+                    
+                       <! rails routes>                         <!Eto JS window "Udalit post">
+  
+            
+     </div>
+   <!/article>
+<% end %>
+
+ 

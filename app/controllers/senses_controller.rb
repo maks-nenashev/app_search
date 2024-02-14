@@ -1,0 +1,2 @@
+class SensesController < ApplicationController
+end

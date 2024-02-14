@@ -4,4 +4,17 @@ Rails.application.routes.draw do
   
   get '/' =>'home#index' 
   
+
+  resources :senses do
+       resources :comments 
+     end 
+  
+  resources :things do
+       resources :comments 
+     end 
+  
+  resources :articles do
+       resources :comments 
+     end  
+     
 end

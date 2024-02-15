@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
     
     def index   # 4: Wywod wsech zapisej!
        @articles = Article.all
-       #@locals = Local.all
+       @locals = Local.all
        #@q = Article.ransack(params[:q])
        #@articles = @q.result(distinct: true)
       end
@@ -14,13 +14,13 @@ class ArticlesController < ApplicationController
        @commentable = @article
        @comment = Comment.new
       # @article = Article.find params[:id]  :before_action :set_article! "Refactoring"
-     # @locals = Local.new
+       @locals = Local.new
    end
       
   
    def new  # 1: создать - new (отобразить форму. GET)
        @article = Article.new  # Пустым оставлять тельзя!
-      # @locals = Local.all
+       @locals = Local.all
       end
     
    def create # 2: create (отправить форму. POST)   
@@ -30,9 +30,10 @@ class ArticlesController < ApplicationController
        @article.save 
        flash[:success] = "Article created!"   #Window Podtwerzdenija
        redirect_to @article 
-    else
-       #@locals = Local.all
-    #else  
+    elsif
+       @locals = Local.all
+    
+       else  
       render action: 'new'  #"perenaprowlenie"
      end
    end
@@ -62,7 +63,7 @@ class ArticlesController < ApplicationController
    private
   
     def article_params
-      params.require(:article).permit(:title, :text, :image)
+      params.require(:article).permit(:title, :text, :local_id, :image)
    end
   
     def set_article!  # :before_action :set_article! only[show destroy edit update] "Refactoring"

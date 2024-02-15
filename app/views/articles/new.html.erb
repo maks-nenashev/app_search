@@ -3,12 +3,15 @@
 
 <%= form_for :article, url: articles_path, data: {turbo:false}  do |f| %>
 
-
+<!form class="d-flex" role="search">
+<%= select(:article,:local_id, options_from_collection_for_select(@locals, "id","title", @article.present? ? @article.local_id : nil), {})%>
+    <%#= select(:article,:local_id, Local.all.collect {|local| [local.title, local.id]}) %> 
+    <!/form>
 <%#= render 'shared/errors', object: @article %> <!Walidacija - papka shared/_errors>
 <%# if @article && @article.errors.full_messages.any?%> <!Prowerka! Esli estj ochybka to nepropustit>
 <%# end%>
-
-
+<br>
+<br>
 <div class="mb-3 row">
 <div class="col-sm-2 col-form-label">   
     <%= f.label :title %>

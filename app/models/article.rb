@@ -8,7 +8,7 @@ class Article < ApplicationRecord
     has_many :comments, as: :commentable, dependent: :destroy# Podkluchenie "Comments" delaem
        
     
-   # belongs_to :local
+    belongs_to :local
     
 
 end

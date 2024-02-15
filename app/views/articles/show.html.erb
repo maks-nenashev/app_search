@@ -4,8 +4,13 @@
 <h3>Thanks You!</h3>
 <h4>Article has been created!!!</h4>
 
+ <H5>Область: <%= @article.local.title%></H5>
+ 
  <p class="mb-2"><%= @article.title %></p>
+ 
+ <%# if @article.image.url? %>  
  <%= image_tag @article.image, style: "width: 380px; height: auto", class: 'img-thumbnail thumb'%>
+  <%# end %>
  <br>
  <p class="lead my-3"><%= @article.text %></p>
 

@@ -4,11 +4,19 @@
 <h2 class="mb-4">List of articles!</h2>  <!# Wywod wsech zapisej!>
  
  
- <br>
+<!br>
 <p>
-<%= link_to "New article", new_article_path,class: "btn btn-primary btn-lg" %>
+<%= link_to "Нове Оголошення", new_article_path, class: "button big gray bi bi-pencil-square" %>
 </p>
-<div class="container">
+
+<div class="container-fluid">
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Пошук">
+      <button class="btn btn-outline-success" type="submit">Пошук</button>
+    </form>
+  </div>
+<br>
+<!div class="container">
 <% @articles.each do |article| %>
      <!article class="card mt-3">
      <!div class="card-body">
@@ -17,7 +25,9 @@
   </h4>
 
   <p class="my-2">
+  <%# if article.image.attached?%> <! if image nil>
   <%= link_to image_tag(article.image, style: "width: 380px; height: auto", class: 'img-thumbnail thumb'), article_path(article)%>
+  <%# end %>
   </p>           
   
   <h4 class="my-2">
@@ -29,19 +39,18 @@
   <%= article.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
   </time>  
            </section>            
-   <hr>
+   <!hr>
                      <!Ssylka na statью>
   <p><!%= link_to "New article", new_article_path(article),class: "btn btn-primary" %> 
-     <%= link_to  "Show article", article_path(article),class: "btn btn-primary btn-sm"%>  
-     <%= link_to  "Edit article", edit_article_path(article),class: "btn btn-secondary btn-sm"%> 
-     <%= link_to 'Delete', article_path(article), data: {'turbo-method': :delete,'turbo-confirm': 
+     <%#= link_to  "Show article", article_path(article),class: "btn btn-primary btn-sm"%>  
+     <%= link_to  "Редагувати", edit_article_path(article),class: "btn btn-secondary btn-sm"%> 
+     <%= link_to 'Видалити', article_path(article), data: {'turbo-method': :delete,'turbo-confirm': 
      'Are you sure?'}, class:"btn btn-danger btn-sm"%>
-                    
+   <hr>              
                        <! rails routes>                         <!Eto JS window "Udalit post">
   
             
-     </div>
-   <!/article>
+     <!/div>
 <% end %>
 
  

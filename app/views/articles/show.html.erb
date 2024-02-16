@@ -1,14 +1,11 @@
 <%# provide :page_title, 'Article has been created!!!' %> <!Podpis w ikonke "Kakaja stranica">
 
-<!3 Wywodim bazu po ID>
-<h3>Thanks You!</h3>
-<h4>Article has been created!!!</h4>
 
  <H5>Область: <%= @article.local.title%></H5>
  
  <p class="mb-2"><%= @article.title %></p>
  
- <%# if @article.image.url? %>  
+ <%# if @article.image.url? %>  <! if image nil>
  <%= image_tag @article.image, style: "width: 380px; height: auto", class: 'img-thumbnail thumb'%>
   <%# end %>
  <br>
@@ -18,8 +15,9 @@
   <time datetime="<%= @article.created_at.strftime("%Y-%m-%d %H:%M:%S")%>">
   <%= @article.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
   </time>  
-   <%= link_to ('Edit'), edit_article_path(@article),class: "btn btn-secondary btn-sm"%> 
-   <%= link_to ('Delete'), article_path(@article), data: {'turbo-method': :delete,'turbo-confirm': 
+   <br>
+   <%= link_to ('Редагувати'), edit_article_path(@article),class: "btn btn-secondary btn-sm"%> 
+   <%= link_to ('Видалити'), article_path(@article), data: {'turbo-method': :delete,'turbo-confirm': 
      'Are you sure?'}, class:"btn btn-danger btn-sm"%>
    <%= link_to "Показати всi оголошення!",articles_path, class:"button is-danger is-inverted" %> <!Prawelnaja ssylka>
 <!/////////////////////////////////////////////////////////////////////////////////////////>
@@ -68,8 +66,8 @@
          </section>
               
  
- <%= link_to  "Edit article", edit_article_comment_path(@article,comment),class: "btn btn-secondary btn-sm"%> 
- <%= link_to 'Delete', article_comment_path(@article, comment), class: 'btn btn-danger btn-sm',
+ <%= link_to  "Редагувати", edit_article_comment_path(@article,comment),class: "btn btn-secondary btn-sm"%> 
+ <%= link_to 'Видалити', article_comment_path(@article, comment), class: 'btn btn-danger btn-sm',
       data: {method: :delete, confirm: "Are you sure?"} %>
    </div>
  </article>

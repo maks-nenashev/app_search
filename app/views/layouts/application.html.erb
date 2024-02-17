@@ -7,10 +7,34 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "custom", "data-turbo-track": "reload" %> <!Custom CSS>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
   <body>
+    
+    <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
+  <div class="bg-dark p-4">
+    <h5 class="text-body-emphasis h4">Collapsed content</h5>
+    <span class="text-body-secondary">Toggleable via the navbar brand.</span>
+      <%= link_to ('Головна'), root_path, class: "bi bi-house-door"%>
+      
+  </div>
+    
+</div>
+<!nav class="navbar navbar bg-primary">
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+     <h2 class="navbar-brand centr" href="#" class="text-danger">Zyahidka.info</h2>
+  </div>
+</nav>
+     <div class="container mt-3"> 
+    
     <%= yield %>
+  
+     </div>
   </body>
 </html>

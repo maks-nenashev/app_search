@@ -6,8 +6,8 @@ class ArticlesController < ApplicationController
     def index   # 4: Wywod wsech zapisej!
        @articles = Article.all
        @locals = Local.all
-       #@q = Article.ransack(params[:q])
-       #@articles = @q.result(distinct: true)
+       @q = Article.ransack(params[:q])
+       @articles = @q.result(distinct: true)
       end
     
    def show  # 3: Wywodim bazu po :ID
@@ -19,8 +19,10 @@ class ArticlesController < ApplicationController
       
   
    def new  # 1: создать - new (отобразить форму. GET)
-       @article = Article.new  # Пустым оставлять тельзя!
+       #@article = Article.new  # Пустым оставлять тельзя!
        @locals = Local.all
+       @q = Article.ransack(params[:q])
+       @articles = @q.result(distinct: true)
       end
     
    def create # 2: create (отправить форму. POST)   

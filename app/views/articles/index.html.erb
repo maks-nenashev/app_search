@@ -8,18 +8,19 @@
 <p>
 <%= link_to "Нове Оголошення", new_article_path, class: "button big gray bi bi-pencil-square" %>
 </p>
-
-<div class="container-fluid">
-    <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Пошук">
-      <button class="btn btn-outline-success" type="submit">Пошук</button>
+ 
+ <div class="container-fluid">
+ <form class="d-flex" role="search">
+ <%= search_form_for @q do |f| %>
+          <%= f.select :local_id_eq, @locals.map { |t| [t.title, t.id] }, required: false %>
+<!br><%= f.submit "Шукати!", class:"button is-primary "%>
+    <%#= f.submit "Шукати!", class:" btn btn-outline-success"%>
+    <% end %>
     </form>
   </div>
+
 <br>
-<!div class="container">
 <% @articles.each do |article| %>
-     <!article class="card mt-3">
-     <!div class="card-body">
   <h4>
   <%= link_to article.title, article_path(article) %>
   </h4>

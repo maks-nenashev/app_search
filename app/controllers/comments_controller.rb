@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
                @comment = @commentable.comments.find params[:id]
              if@comment.update(comment_params) # Obnowlaem s nowymi parametromi
                redirect_to  @commentable   #"perenaprowlenie" 
-               flash[:success] = "Comment updated!" #Window Podtwerzdenija
+               flash[:success] = "Коментар Змiнено!" #Window Podtwerzdenija
               else
                render action: 'edit'    #"perenaprowlenie"
             end
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
              @commentable = set_commentable
              @comment = @commentable.comments.build comment_params
            if@comment.save
-             flash[:success] = "Comment created!"  #Window Podtwerzdenija
+             flash[:success] = "Коментар Створено!"  #Window Podtwerzdenija
              redirect_to  @commentable  #"perenaprowlenie" 
            else
               render 'new'
@@ -35,14 +35,14 @@ class CommentsController < ApplicationController
          def destroy # 2 Udalenie kaЖdogo commeta
             @comment = @commentable.comments.find params[:id]
             @comment.destroy
-            flash[:success] = "Comment deleted!"     #Window Podtwerzdenija
+            flash[:success] = "Коментар Видалений!"     #Window Podtwerzdenija
             redirect_to  @commentable  #"perenaprowlenie" 
          end
          
          def show 
              @comment = @commentable.comments.find params[:id]
              @comment.destroy
-             flash[:success] = "Comment deleted!"     #Window Podtwerzdenija
+             flash[:success] = "Коментар Видалений!"     #Window Podtwerzdenija
              redirect_to  @commentable
           end
          

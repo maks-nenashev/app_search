@@ -26,9 +26,9 @@
   </h4>
 
   <p class="my-2">
-  <%# if article.image.attached?%> <! if image nil>
+  <% if article.image.attached?%> <! if image nil>
   <%= link_to image_tag(article.image, style: "width: 380px; height: auto", class: 'img-thumbnail thumb'), article_path(article)%>
-  <%# end %>
+  <% end %>
   </p>           
   
   <h4 class="my-2">

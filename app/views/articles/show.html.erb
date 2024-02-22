@@ -5,9 +5,9 @@
  
  <p class="mb-2"><%= @article.title %></p>
  
- <%# if @article.image.url? %>  <! if image nil>
+ <% if @article.image.attached?%> <! if image nil>
  <%= image_tag @article.image, style: "width: 380px; height: auto", class: 'img-thumbnail thumb'%>
-  <%# end %>
+  <% end %>
  <br>
  <p class="lead my-3"><%= @article.text %></p>
 

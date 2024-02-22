@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    
     <title>AppSearch</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -28,12 +30,16 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-     <h2 class="navbar-brand centr" href="#" class="text-danger">Zyahidka.info</h2>
+     <h2 class="navbar-brand centr" href="#" class="text-danger">Znahidka.info</h2>
   </div>
 </nav>
-     <div class="container mt-3"> 
     
-    <%= yield %>
+    <main class="container mt-3"> <! Window Podtwerzdenija>
+      <% flash.each do |k, v| %>
+        <%= tag.div v, class: "alert alert-#{k}", role: 'alert' %>
+      <% end %>     
+      <%= yield %>
+    </main>
   
      </div>
   </body>

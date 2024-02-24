@@ -6,8 +6,10 @@
 <%#= render 'shared/errors', object: @article %> <!Walidacija - papka shared/_errors>
 <%# if @article && @article.errors.full_messages.any?%> <!Prowerka! Esli estj ochybka to nepropustit>
 <%# end%>
+ <%= select(:article,:local_id, Local.all.collect {|local| [local.title, local.id]})%>
 
-
+<br>
+<br>
 <label class="label">Заголовок</label>
 <div class="col-sm-10">          <!Walidacija CSS --required: true, minlength:2,>
     <%= f.text_field :title, placeholder: "Title", class: "form-control"%>

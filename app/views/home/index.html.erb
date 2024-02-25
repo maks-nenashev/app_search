@@ -6,25 +6,39 @@
   </form>
 <br>
 <br>
-<div class="container overflow-hidden">
-  <div class="row gx-5">
-    <div class="col">
-     <!div class="p-3 border bg-light"><!/div>
-     <%= link_to image_tag("piople.jpg",:size => "360x350"),articles_path %>
-    </div>
-    <!/div>
-    <div class="col">
-      <!div class="p-3 border bg-light"><!/div>
-     <%= link_to image_tag("dag.jpg",:size => "360x350"),articles_path %>
-    </div>
-    <!/div>
-    <div class="col">
-      <!div class="p-3 border bg-light"><!/div>
-      <%= link_to image_tag("thing.jpg",:size => "360x350"),articles_path %>
-    <!/div>
-    </div>
+ <div class="container-md">
+  <div class="row g-3">
+    <div class="col-12 col-md-6 col-lg-4">
+       <div class="card">
+          <%= link_to image_tag("piople.jpg",:size => "360x350",class: "card-img-top"),articles_path %>
+            <div class="card-body">
+            <H5 class="card-title text-center">Люди</H5>
+           <p class="card-texa">В цьому розділі ви можете шукати та знайти людей.</p>
+         </div>
+        </div>
+       </div>
+     <div class="col-12 col-md-6 col-lg-4">
+      <div class="card">
+        <%= link_to image_tag("dag.jpg",:size => "360x350",class: "card-img-top"),articles_path %>
+        <div class="card-body">
+          <H5 class="card-title text-center">Тварини</H5>
+          <p class="card-texa">В цьому розділі ви можете шукати та знайти людей.</p>
+        </div>
+       </div>
+      </div>
+  
+     <div class="col-12 col-md-6 col-lg-4">
+      <div class="card">
+      <%= link_to image_tag("thing.jpg",:size => "360x350",class: "card-img-top"),articles_path %>
+         <div class="card-body">
+          <H5 class="card-title text-center">Речi</H5>
+         <p class="card-texa">В цьому розділі ви можете шукати та знайти людей.</p>
+        </div>
+       </div>
+      </div>
+   </div>
   </div>
- </div>
+ <!/div>
 
  
  

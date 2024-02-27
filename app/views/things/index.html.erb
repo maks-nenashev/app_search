@@ -11,7 +11,7 @@
  
 <!br>
 <p>
-<%= link_to "Нове Оголошення", new_article_path, class: "button big gray bi bi-pencil-square" %>
+<%= link_to "Нове Оголошення", new_thing_path, class: "button big gray bi bi-pencil-square" %>
 </p>
  
  <div class="container-fluid">
@@ -25,32 +25,32 @@
   </div>
 
 <br>
-<% @articles.each do |article| %>
+<% @things.each do |thing| %>
   <h4>
-  <%= link_to article.title, article_path(article) %>
+  <%= link_to thing.title, thing_path(thing) %>
   </h4>
 
   <p class="my-2">
-  <% if article.image.attached?%> <! if image nil>
-  <%= link_to image_tag(article.image, style: "width: 380px; height: auto", class: 'img-thumbnail thumb'), article_path(article)%>
+  <% if thing.image.attached?%> <! if image nil>
+  <%= link_to image_tag(thing.image, style: "width: 380px; height: auto", class: 'img-thumbnail thumb'), thing_path(thing)%>
   <% end %>
   </p>           
   
   <h4 class="my-2">
-  <%= article.text %>
+  <%= thing.text %>
   </h4>
         <section class="card-text">
            <! Podkluchenie time pod soobzheniem!>
-  <time datetime="<%= article.created_at.strftime("%Y-%m-%d %H:%M:%S")%>">
-  <%= article.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+  <time datetime="<%= thing.created_at.strftime("%Y-%m-%d %H:%M:%S")%>">
+  <%= thing.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
   </time>  
            </section>            
    <!hr>
                      <!Ssylka na statью>
   <p><!%= link_to "New article", new_article_path(article),class: "btn btn-primary" %> 
      <%#= link_to  "Show article", article_path(article),class: "btn btn-primary btn-sm"%>  
-     <%= link_to  "Редагувати", edit_article_path(article),class: "btn btn-secondary btn-sm"%> 
-     <%= link_to 'Видалити', article_path(article), data: {'turbo-method': :delete,'turbo-confirm': 
+     <%= link_to  "Редагувати", edit_thing_path(thing),class: "btn btn-secondary btn-sm"%> 
+     <%= link_to 'Видалити', thing_path(thing), data: {'turbo-method': :delete,'turbo-confirm': 
      'Are you sure?'}, class:"btn btn-danger btn-sm"%>
    <hr>              
                        <! rails routes>                         <!Eto JS window "Udalit post">

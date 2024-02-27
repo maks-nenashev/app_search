@@ -1,11 +1,11 @@
 <br>
 <h2>New Article</h2>
 
-<%= form_for :article, url: articles_path, data: {turbo:false}  do |f| %>
+<%= form_for :thing, url: things_path, data: {turbo:false}  do |f| %>
    
    <!div class="container-fluid">
-   <%#= select(:article,:local_id, options_from_collection_for_select(@locals, "id","title", @article.present? ? @article.local_id : nil), {})%>
-    <%= select(:article,:local_id, Local.all.collect {|local| [local.title, local.id]})%>
+   <%#= select(:thing,:local_id, options_from_collection_for_select(@locals, "id","title", @article.present? ? @article.local_id : nil), {})%>
+    <%= select(:thing,:local_id, Local.all.collect {|local| [local.title, local.id]})%>
    <!/div>
 <%#= render 'shared/errors', object: @article %> <!Walidacija - papka shared/_errors>
 <%# if @article && @article.errors.full_messages.any?%> <!Prowerka! Esli estj ochybka to nepropustit>
@@ -36,4 +36,4 @@
 
 <br>
 <br>
-<%= link_to "Показати всi оголошення!",articles_path, class:"button is-danger is-inverted" %>
+<%= link_to "Показати всi оголошення!",things_path, class:"button is-danger is-inverted" %>

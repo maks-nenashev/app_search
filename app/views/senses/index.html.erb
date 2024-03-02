@@ -1,0 +1,60 @@
+<%# provide :page_title, 'Articles' %> <!Podpis w ikonre "Kakaja stranica">
+<!% currently_art "Articles" %>
+<br>
+<form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Пошук" aria-label="Пошук">
+      <button class="btn btn-outline-success" type="submit">Шукати</button>
+  </form>
+<br>
+<!h2 class="mb-4"><!/h2>  <!# Wywod wsech zapisej!>
+ 
+ 
+<!br>
+<p>
+<%= link_to "Нове Оголошення", new_sense_path, class: "button big gray bi bi-pencil-square" %>
+</p>
+ 
+ <div class="container-fluid">
+ <form class="d-flex" role="search">
+ <%= search_form_for @q do |f| %>
+          <%= f.select :local_id_eq, @locals.map { |t| [t.title, t.id] }, required: false %>
+<!br><%= f.submit "Шукати!", class:"button is-primary "%>
+    <%#= f.submit "Шукати!", class:" btn btn-outline-success"%>
+    <% end %>
+    </form>
+  </div>
+
+<br>
+<% @senses.each do |sense| %>
+  <h4>
+  <%= link_to sense.title, sense_path(sense) %>
+  </h4>
+
+  <p class="my-2">
+  <% if sense.image.attached?%> <! if image nil>
+  <%= link_to image_tag(sense.image, style: "width: 380px; height: auto", class: 'img-thumbnail thumb'), sense_path(sense)%>
+  <% end %>
+  </p>           
+  
+  <h4 class="my-2">
+  <%= sense.text %>
+  </h4>
+        <section class="card-text">
+           <! Podkluchenie time pod soobzheniem!>
+  <time datetime="<%= sense.created_at.strftime("%Y-%m-%d %H:%M:%S")%>">
+  <%= sense.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+  </time>  
+           </section>            
+   <!hr>
+                     <!Ssylka na statью>
+  <p><!%= link_to "New article", new_article_path(article),class: "btn btn-primary" %> 
+     <%#= link_to  "Show article", article_path(article),class: "btn btn-primary btn-sm"%>  
+     <%= link_to  "Редагувати", edit_sense_path(sense),class: "btn btn-secondary btn-sm"%> 
+     <%= link_to 'Видалити', sense_path(sense), data: {'turbo-method': :delete,'turbo-confirm': 
+     'Are you sure?'}, class:"btn btn-danger btn-sm"%>
+   <hr>              
+                       <! rails routes>                         <!Eto JS window "Udalit post">
+  
+            
+     <!/div>
+<% end %>

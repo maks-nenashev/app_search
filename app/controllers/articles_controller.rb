@@ -57,7 +57,7 @@ class ArticlesController < ApplicationController
   def destroy # Delite publikacij
     #@article = Article.find(params[:id]) #:before_action :set_article! "Refactoring"
     @article.destroy
-    flash[:success] = "Оголошення Видолине!"     #Window Podtwerzdenija
+    flash[:success] = "Оголошення Видалине!"     #Window Podtwerzdenija
     redirect_to @article  #"perenaprowlenie"
   end
   

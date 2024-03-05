@@ -42,7 +42,7 @@ class ThingsController < ApplicationController
        #@thing = Thing.find(params[:id]) before_action :set_shing! "Refactoring"
      if @thing.update(thing_params) # Obnowlaem s nowymi parametromi
         redirect_to @thing
-        flash[:success] = "Оголошення Редоговане" #Window Podtwerzdenija
+        flash[:success] = "Оголошення Редаговане" #Window Podtwerzdenija
        else
         render action: 'edit'    #"perenaprowlenie"
      end
@@ -51,7 +51,7 @@ class ThingsController < ApplicationController
    def destroy 
      #@thing = Thing.find(params[:id]) # :before_action :set_thing! "Refactoring"
      @thing.destroy
-     flash[:success] = "Оголошення Видолине"     #Window Podtwerzdenija
+     flash[:success] = "Оголошення Видалине"     #Window Podtwerzdenija
      redirect_to @thing  
    end
    

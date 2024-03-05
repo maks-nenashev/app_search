@@ -52,7 +52,7 @@ class SensesController < ApplicationController
    def destroy # Delite publikacij
      #@sense = Sense.find(params[:id]) # :before_action :set_sense! "Refactoring"
      @sense.destroy
-     flash[:success] = "Оголошення Видолине!"     #Window Podtwerzdenija
+     flash[:success] = "Оголошення Видалине!"     #Window Podtwerzdenija
      redirect_to @sense  #"perenaprowlenie"
    end
    

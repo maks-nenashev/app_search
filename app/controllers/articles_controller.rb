@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
        @articles = Article.all
        @locals = Local.all
        @q = Article.ransack(params[:q])
-       @articles = @q.result(distinct: true)
+       @pagy,@articles = pagy @q.result(distinct: true),items:3
       end
     
    def show  # 3: Wywodim bazu po :ID

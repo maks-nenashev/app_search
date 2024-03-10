@@ -5,7 +5,7 @@ class SensesController < ApplicationController
         @senses = Sense.all
         @locals = Local.all
         @q = Sense.ransack(params[:q])
-        @senses = @q.result(distinct: true)
+        @pagy,@senses = pagy @q.result(distinct: true),items:3
      end
      
     def show  # 3: Wywodim bazu po :ID
@@ -52,7 +52,7 @@ class SensesController < ApplicationController
    def destroy # Delite publikacij
      #@sense = Sense.find(params[:id]) # :before_action :set_sense! "Refactoring"
      @sense.destroy
-     flash[:success] = "Оголошення Видолине!"     #Window Podtwerzdenija
+     flash[:success] = "Оголошення Видалине!"     #Window Podtwerzdenija
      redirect_to @sense  #"perenaprowlenie"
    end
    

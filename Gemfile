@@ -62,7 +62,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem 'ransack'# Collection filtering and sorting
-  
+  gem 'pagy','~> 6.0.2'
 end
 
 group :test do

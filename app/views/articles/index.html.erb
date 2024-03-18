@@ -16,9 +16,9 @@
  
  <div class="container-fluid">
  <form class="d-flex" role="search">
- <%= search_form_for @q do |f| %>
-          <%= f.select :local_id_eq, @locals.map { |t| [t.title, t.id] }, required: false %>
-<!br><%= f.submit "Шукати!", class:"button is-primary "%>
+ <%= search_form_for @q do |f| %>                                        <!All posts in dropdown>
+       <%= f.select :local_id_eq, @locals.map { |t| [t.title, t.id] },:include_blank => "Вся Україна", required: false %>
+    <%= f.submit "Шукати!", class:"button is-primary "%>
     <%#= f.submit "Шукати!", class:" btn btn-outline-success"%>
     <% end %>
     </form>

@@ -1,5 +1,5 @@
 <br>
-<h2>New Article</h2>
+<h2>Нове Оголошення</h2>
 
 <%= form_for :article, url: articles_path, data: {turbo:false}  do |f| %>
    
@@ -21,7 +21,7 @@
 <br>
  <label class="label">Текст</label>
 <div class="col-sm-10">     <! Walidacija CSS ---required: true, minlength:2,>
-    <%= f.text_area :text, placeholder: "Текст", required: true, minlength:2, class: "form-control"%>
+    <%= f.rich_text_area :text, placeholder: "Teкст", class: "form-control" %>
 </div>
 
 <br>

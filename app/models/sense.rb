@@ -1,6 +1,7 @@
 class Sense < ApplicationRecord
     has_one_attached :image # Foto!
-  
+    has_rich_text :text  #Trix
+    
     has_many :comments, as: :commentable, dependent: :destroy # Podkluchenie "Comments" Rukami 
  
     belongs_to :local

@@ -52,6 +52,7 @@ gem "sassc-rails"
 gem "image_processing", "~> 1.2"
 gem 'foreman'
 gem 'uglifier' #Dla normalnoj raboty :rails assets:precompile
+gem 'draper' # Dekorator
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

@@ -1,15 +1,14 @@
-<%# provide :page_title, 'Articles' %> <!Podpis w ikonre "Kakaja stranica">
+<% provide :page_title, 'Люди' %> <!Podpis w ikonke>
 <!% currently_art "Articles" %>
 <br>
 <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Пошук" aria-label="Пошук">
-      <button class="btn btn-outline-success" type="submit">Шукати</button>
+     <%= search_form_for @q do |f| %>
+       <%= f.search_field :local_title_cont, class:"form-control me-2", type:"search", placeholder:"Введіть ключове слово пошуку!"%> 
+      <%= f.submit "Шукати!", class:"btn btn-outline-success"%>
+    <%end%>
   </form>
 <br>
-<!h2 class="mb-4"><!/h2>  <!# Wywod wsech zapisej!>
- 
- 
-<!br>
+
 <p>
 <%= link_to "Нове Оголошення", new_article_path, class: "button big gray bi bi-pencil-square" %>
 </p>
@@ -18,8 +17,7 @@
  <form class="d-flex" role="search">
  <%= search_form_for @q do |f| %>                                        <!All posts in dropdown>
        <%= f.select :local_id_eq, @locals.map { |t| [t.title, t.id] },:include_blank => "Вся Україна", required: false %>
-    <%= f.submit "Шукати!", class:"button is-primary "%>
-    <%#= f.submit "Шукати!", class:" btn btn-outline-success"%>
+      <%= f.submit "Шукати!", class:"button is-primary "%>
     <% end %>
     </form>
   </div>

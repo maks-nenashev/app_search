@@ -2,10 +2,10 @@
 <!% currently_art "Articles" %>
 <br>
 <form class="d-flex" role="search">
-     <%= search_form_for @q do |f| %>
-       <%= f.search_field :local_title_cont, class:"form-control me-2", type:"search", placeholder:"Введіть ключове слово пошуку!"%> 
-      <%= f.submit "Шукати!", class:"btn btn-outline-success"%>
-    <%end%>
+     <%#= search_form_for @q do |f| %>
+       <%#= f.search_field :local_title_cont, class:"form-control me-2", type:"search", placeholder:"Введіть ключове слово пошуку!"%> 
+      <%#= f.submit "Шукати!", class:"btn btn-outline-success"%>
+    <%#end%>
   </form>
 <br>
 
@@ -15,8 +15,10 @@
  
  <div class="container-fluid">
  <form class="d-flex" role="search">
- <%= search_form_for @q do |f| %>                                        <!All posts in dropdown>
-       <%= f.select :local_id_eq, @locals.map { |t| [t.title, t.id] },:include_blank => "Вся Україна", required: false %>
+ <%= search_form_for @q do |f| %>                                        
+       <%= f.select :choice_id_eq, @choice.map { |t| [t.title, t.id] }, required: false %>                                                                
+                                                                       <!All posts in dropdown>
+      .<%= f.select :local_id_eq, @locals.map { |t| [t.title, t.id] },:include_blank => "Вся Україна", required: false %>
       <%= f.submit "Шукати!", class:"button is-primary "%>
     <% end %>
     </form>

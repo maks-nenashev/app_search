@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
     
     def index   # 4: Wywod wsech zapisej!
        @articles = Article.all
+       @choice = Choice.all
        @locals = Local.all
        @q = Article.ransack(params[:q])
        @pagy,@articles = pagy @q.result(distinct: true),items:3
@@ -20,6 +21,7 @@ class ArticlesController < ApplicationController
   
    def new  # 1: создать - new (отобразить форму. GET)
        #@article = Article.new  # Пустым оставлять тельзя!
+       @choice = Choice.all
        @locals = Local.all
        @q = Article.ransack(params[:q])
        @articles = @q.result(distinct: true)
@@ -34,7 +36,7 @@ class ArticlesController < ApplicationController
        redirect_to @article 
     elsif
        @locals = Local.all
-    
+       @choice = Choice.all
        else  
       render action: 'new'  #"perenaprowlenie"
      end
@@ -65,7 +67,7 @@ class ArticlesController < ApplicationController
    private
   
     def article_params
-      params.require(:article).permit(:title, :text, :local_id, :image)
+      params.require(:article).permit(:title, :text, :local_id, :choice_id, :image)
    end
   
     def set_article!  # :before_action :set_article! only[show destroy edit update] "Refactoring"

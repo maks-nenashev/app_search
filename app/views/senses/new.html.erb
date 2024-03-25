@@ -4,10 +4,11 @@
 
 <%= form_for :sense, url: senses_path, data: {turbo:false}  do |f| %>
    
+    <%= select(:sense,:choice_id, Choice.all.collect {|choice| [choice.title, choice.id]})%>
    <!div class="container-fluid">
    <%#= select(:article,:local_id, options_from_collection_for_select(@locals, "id","title", @article.present? ? @article.local_id : nil), {})%>
     <%= select(:sense,:local_id, Local.all.collect {|local| [local.title, local.id]})%>
-   <!/div>
+
 <%#= render 'shared/errors', object: @article %> <!Walidacija - papka shared/_errors>
 <%# if @article && @article.errors.full_messages.any?%> <!Prowerka! Esli estj ochybka to nepropustit>
 <%# end%>

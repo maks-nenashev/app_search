@@ -3,6 +3,7 @@ class SensesController < ApplicationController
                                                                
     def index   # 4: Wywod wsech zapisej!
         @senses = Sense.all
+        @choice = Choice.all
         @locals = Local.all
         @q = Sense.ransack(params[:q])
         @pagy,@senses = pagy @q.result(distinct: true),items:3
@@ -19,7 +20,8 @@ class SensesController < ApplicationController
     def new  # 1: создать - new (отобразить форму. GET)
         @sense = Sense.new  # Пустым оставлять тельзя!
         @locals = Local.all
-       end
+        @choice = Choice.all 
+      end
      
     def create # 2: create (отправить форму. POST)   
         @sense = Sense.new(sense_params)
@@ -60,7 +62,7 @@ class SensesController < ApplicationController
     private
    
      def sense_params
-       params.require(:sense).permit(:title, :text, :local_id, :image)
+       params.require(:sense).permit(:title, :text, :local_id, :choice_id, :image)
     end
    
      def set_sense!  # :before_action :set_sense! only[show destroy edit update] "Refactoring"

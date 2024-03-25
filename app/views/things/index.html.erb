@@ -17,8 +17,7 @@
  <div class="container-fluid">
  <form class="d-flex" role="search">
  <%= search_form_for @q do |f| %>                                           
-          <%= f.select :choice_id_eq, @choice.map { |t| [t.title, t.id] }, required: false %>                                                                
-        <div class="col-md-1"> </div>                                                                 
+          <%= f.select :choice_id_eq, @choice.map { |t| [t.title, t.id] }, required: false %>                                                                                                                                
                                                                              <!all post in dropdown>
         .<%= f.select :local_id_eq, @locals.map { |t| [t.title, t.id] }, :include_blank => "Вся Україна", required: false %>
 <!br><%= f.submit "Шукати!", class:"button is-primary "%>

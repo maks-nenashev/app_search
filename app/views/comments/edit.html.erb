@@ -1,0 +1,16 @@
+<H2>Редаговання</H2>
+<br>
+<br>
+<%= form_with model: [@commentable, @comment] do |f| %>
+  
+    <label class="label">Текст</label>
+    <div class="col-sm-10">                    <! Walidacija CSS ---required: true, minlength:2,>
+      <%= f.rich_text_area :body, class: 'form-control',required: true, minlength:2 %>
+    </div>
+  
+ <br>
+  <%= f.submit ('Редагувати'), class: 'btn btn-primary' %>
+<% end %>
+
+<br>
+<%#= link_to "Показати всi оголошення!",articles_path, class:"btn btn-light" %> <!Prawelnaja ssylka>

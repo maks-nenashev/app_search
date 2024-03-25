@@ -1,0 +1,65 @@
+<% provide :page_title, 'Речi' %> <!Podpis w ikonke>
+<!% currently_art "Articles" %>
+<br>
+<form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Пошук" aria-label="Пошук">
+      <button class="btn btn-outline-success" type="submit">Шукати</button>
+  </form>
+<br>
+<!h2 class="mb-4"><!/h2>  <!# Wywod wsech zapisej!>
+ 
+ 
+<!br>
+<p>
+<%= link_to "Нове Оголошення", new_thing_path, class: "button big gray bi bi-pencil-square" %>
+</p>
+ 
+ <div class="container-fluid">
+ <form class="d-flex" role="search">
+ <%= search_form_for @q do |f| %>                                           
+          <%= f.select :choice_id_eq, @choice.map { |t| [t.title, t.id] }, required: false %>                                                                
+        <div class="col-md-1"> </div>                                                                 
+                                                                             <!all post in dropdown>
+        .<%= f.select :local_id_eq, @locals.map { |t| [t.title, t.id] }, :include_blank => "Вся Україна", required: false %>
+<!br><%= f.submit "Шукати!", class:"button is-primary "%>
+    <%#= f.submit "Шукати!", class:" btn btn-outline-success"%>
+    <% end %>
+    </form>
+  </div>
+
+<br>
+<% @things.each do |thing| %>
+  <h4>
+  <%= link_to thing.title, thing_path(thing) %>
+  </h4>
+
+  <p class="my-2">
+  <% if thing.image.attached?%> <! if image nil>
+  <%= link_to image_tag(thing.image, style: "width: 380px; height: auto", class: 'img-thumbnail thumb'), thing_path(thing)%>
+  <% end %>
+  </p>           
+  
+  <h4 class="my-2">
+  <%= thing.text %>
+  </h4>
+        <section class="card-text">
+           <! Podkluchenie time pod soobzheniem!>
+  <time datetime="<%= thing.created_at.strftime("%Y-%m-%d %H:%M:%S")%>">
+  <%= thing.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+  </time>  
+           </section>            
+   <!hr>
+                     <!Ssylka na statью>
+  <p><!%= link_to "New article", new_article_path(article),class: "btn btn-primary" %> 
+     <%#= link_to  "Show article", article_path(article),class: "btn btn-primary btn-sm"%>  
+     <%= link_to  "Редагувати", edit_thing_path(thing),class: "btn btn-secondary btn-sm"%> 
+     <%= link_to 'Видалити', thing_path(thing), data: {'turbo-method': :delete,'turbo-confirm': 
+     'Are you sure?'}, class:"btn btn-danger btn-sm"%>
+   <hr>              
+                    
+<% end %>
+   <br>
+   <%== pagy_bootstrap_nav(@pagy)%>   <!Pagy "gem pagy" razbiw na stranicy Podkluchenie> 
+   <br>
+
+ 

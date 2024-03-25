@@ -2,7 +2,8 @@
 <h2><%#= t'.title'%></h2>  
                   <!#5 Wozwrat i Redactirowanie>       
 <%= form_for :sense, url: sense_path(@sense), method: :patch do |f| %>
-
+ 
+ <%= select(:sense,:choice_id, Choice.all.collect {|choice| [choice.title, choice.id]})%>
 <%#= render 'shared/errors', object: @article %> <!Walidacija - papka shared/_errors>
 <%# if @article && @article.errors.full_messages.any?%> <!Prowerka! Esli estj ochybka to nepropustit>
 <%# end%>

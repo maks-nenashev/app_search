@@ -4,6 +4,7 @@ class ThingsController < ApplicationController
     def index  
         @things = Thing.all
         @locals = Local.all
+        @choice = Choice.all
         @q = Thing.ransack(params[:q])
         @pagy,@things = pagy @q.result(distinct: true),items:3
       end
@@ -19,7 +20,8 @@ class ThingsController < ApplicationController
     def new  
         @thing = Thing.new  
         @locals = Local.all
-       end
+        @choice = Choice.all
+      end
      
     def create # 2: create (отправить форму. POST)   
         @thing = Thing.new(thing_params)
@@ -59,7 +61,7 @@ class ThingsController < ApplicationController
     private
    
      def thing_params
-       params.require(:thing).permit(:title, :text, :local_id, :image)
+       params.require(:thing).permit(:title, :text, :local_id, :choice_id, :image)
     end
    
      def set_thing!  # :before_action :set_thing! only[show destroy edit update] "Refactoring"

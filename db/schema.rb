@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_17_215223) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_25_091902) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -53,6 +53,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_17_215223) do
     t.string "title"
     t.text "text"
     t.integer "local_id"
+    t.integer "choice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "choices", force: :cascade do |t|
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,6 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_17_215223) do
     t.string "title"
     t.text "text"
     t.integer "local_id"
+    t.integer "choice_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -84,6 +92,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_17_215223) do
     t.string "title"
     t.text "text"
     t.integer "local_id"
+    t.integer "choice_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,65 @@
+<% provide :page_title, 'Люди' %> <!Podpis w ikonke>
+<!% currently_art "Articles" %>
+<br>
+<form class="d-flex" role="search">
+     <%= search_form_for @q do |f| %>
+       <%= f.search_field :title_or_text_cont, class:"form-control me-2", type:"search", placeholder:"Введіть ключове слово пошуку!"%> 
+      <%= f.submit "Шукати!", class:"btn btn-outline-success"%>
+    <% end %>
+  </form>
+ <br>
+
+<p>
+<%= link_to "Нове Оголошення", new_article_path, class: "button big gray bi bi-pencil-square" %>
+</p>
+ 
+ <div class="container-fluid">
+ <form class="d-flex" role="search">
+ <%= search_form_for @q do |f| %>                                        
+       <%= f.select :choice_id_eq, @choice.map { |t| [t.title, t.id] }, :include_blank => "Всi",required: false %>                                                                
+                                                                       <!All posts in dropdown>
+      .<%= f.select :local_id_eq, @locals.map { |t| [t.title, t.id] },:include_blank => "Вся Україна", required: false %>
+      <%= f.submit "Шукати!", class:"button is-primary "%>
+    <% end %>
+    </form>
+  <%= sort_link(@q, :title, "Oстаннє", default_order: :desc)%> <!":asc">
+   </div>
+<br>
+<br>
+<% @articles.each do |article| %>
+     <h4><%= article.user.username%></h4>
+  <h4>
+  <%= link_to article.title, article_path(article) %>
+  </h4>
+
+  <p class="my-2">
+  <% if article.image.attached?%> <! if image nil>
+  <%= link_to image_tag(article.image, style: "width: 380px; height: auto", class: 'img-thumbnail thumb'), article_path(article)%>
+  <% end %>
+  </p>           
+  
+  <h4 class="my-2">
+  <%= article.text %>
+  </h4>
+        <section class="card-text">
+           <! Podkluchenie time pod soobzheniem!>
+  <time datetime="<%= article.created_at.strftime("%Y-%m-%d %H:%M:%S")%>">
+  <%= article.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+  </time>  
+           </section>            
+   <!hr>
+                     <!Ssylka na statью>
+  <p><!%= link_to "New article", new_article_path(article),class: "btn btn-primary" %> 
+     <%#= link_to  "Show article", article_path(article),class: "btn btn-primary btn-sm"%>  
+     <%= link_to  "Редагувати", edit_article_path(article),class: "btn btn-secondary btn-sm"%> 
+     <%= link_to 'Видалити', article_path(article), data: {'turbo-method': :delete,'turbo-confirm': 
+     'Are you sure?'}, class:"btn btn-danger btn-sm"%>
+   <hr>              
+                       <! rails routes>                         <!Eto JS window "Udalit post">
+        
+     <!/div>
+<% end %>
+   
+   <br>
+   <%== pagy_bootstrap_nav(@pagy)%>   <!Pagy "gem pagy" razbiw na stranicy Podkluchenie> 
+   <br>

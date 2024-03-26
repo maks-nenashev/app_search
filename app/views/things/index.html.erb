@@ -1,15 +1,14 @@
 <% provide :page_title, 'Речi' %> <!Podpis w ikonke>
-<!% currently_art "Articles" %>
+
 <br>
 <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Пошук" aria-label="Пошук">
-      <button class="btn btn-outline-success" type="submit">Шукати</button>
+     <%= search_form_for @q do |f| %>
+       <%= f.search_field :title_or_text_cont, class:"form-control me-2", type:"search", placeholder:"Введіть ключове слово пошуку!"%> 
+      <%= f.submit "Шукати!", class:"btn btn-outline-success"%>
+    <% end %>
   </form>
-<br>
-<!h2 class="mb-4"><!/h2>  <!# Wywod wsech zapisej!>
- 
- 
-<!br>
+  <br>
+
 <p>
 <%= link_to "Нове Оголошення", new_thing_path, class: "button big gray bi bi-pencil-square" %>
 </p>
@@ -17,13 +16,14 @@
  <div class="container-fluid">
  <form class="d-flex" role="search">
  <%= search_form_for @q do |f| %>                                           
-          <%= f.select :choice_id_eq, @choice.map { |t| [t.title, t.id] }, required: false %>                                                                                                                                
+          <%= f.select :choice_id_eq, @choice.map { |t| [t.title, t.id] }, :include_blank => "Всi", required: false %>                                                                                                                                
                                                                              <!all post in dropdown>
         .<%= f.select :local_id_eq, @locals.map { |t| [t.title, t.id] }, :include_blank => "Вся Україна", required: false %>
 <!br><%= f.submit "Шукати!", class:"button is-primary "%>
     <%#= f.submit "Шукати!", class:" btn btn-outline-success"%>
     <% end %>
     </form>
+   <%= sort_link(@q, :title, "Oстаннє", default_order: :desc)%> <!":asc">
   </div>
 
 <br>

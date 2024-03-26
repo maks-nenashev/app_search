@@ -15,14 +15,19 @@
 
   <body>
     
-    <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
-  <div class="bg-dark p-4">
-    <h5 class="text-body-emphasis h4">Collapsed content</h5>
-    <!span class="text-body-secondary"><!/span>
-      <%= link_to ('Головна'), root_path, class: "bi bi-house-door"%>
-      
-  </div>
+  <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
+   <div class="bg-dark p-4">
+   <h5 class="text-body-emphasis h4">Collapsed content</h5>
     
+    <ul class="nav-right"> <!Right>  
+     <% if user_signed_in? %>
+           Hello, <%= current_user.username %> | <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary btn-sm bi bi-door-closed-fill"%>
+            <% else %>
+      <%= link_to "Sign In", new_user_session_path, class: "btn btn-outline-primary btn-sm bi bi-door-open-fill" %>
+     <% end %>
+   </ul>
+      <%= link_to ('Головна'), root_path, class: "bi bi-house-door"%>
+  </div>
 </div>
 <!nav class="navbar navbar bg-primary">
 <nav class="navbar navbar-dark bg-dark">
@@ -42,6 +47,12 @@
     </main>
   
      </div>
+                     <!Эта строка находится в config/initializers/devise.rb
+      config.navigational_formats = ['*/*', :html, :turbo_stream]  i potom wyrubaet server>
+                     <p class="notice"><%= notice %></p>
+                     <p class="alert"><%= alert %></p>
+  
+  
   </body>
 </html>
 

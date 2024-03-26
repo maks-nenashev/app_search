@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-   
+    before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]# Connection "user" 
     before_action :set_article!, only: %i[show destroy edit update]  # @article = Article.find params[:id]   "Refactoring"
                                                                
     
@@ -9,12 +9,12 @@ class ArticlesController < ApplicationController
        @locals = Local.all
        @q = Article.ransack(params[:q])
        @pagy,@articles = pagy @q.result(distinct: true),items:3
-      end
+    end
     
    def show  # 3: Wywodim bazu po :ID
        @commentable = @article
        @comment = Comment.new
-      # @article = Article.find params[:id]  :before_action :set_article! "Refactoring"
+       #@article = Article.find params[:id]  :before_action :set_article! "Refactoring"
        @locals = Local.new
    end
       
@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
     
    def create # 2: create (отправить форму. POST)   
        @article = Article.new(article_params)
-       #@article = current_user.Article.new(article_params)     
+       @article = current_user.articles.build(article_params)# Connection "user"    
     if @article.valid?
        @article.save 
        flash[:success] = "Оголошення Утворено!"   #Window Podtwerzdenija

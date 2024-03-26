@@ -2,7 +2,7 @@
 
 
  <H5>Область: <%= @sense.local.title%></H5>
- 
+  <h4><%= @sense.user.username%></h4>
  <p class="mb-2"><%= @sense.title %></p>
  
  <% if @sense.image.attached?%> <! if image nil>
@@ -53,6 +53,7 @@
 <!h4 class="mt-5"><!/h4>
 <br>
 <% @commentable.comments.each do |comment| %>
+  <h5><%= comment.user.username%></h5> 
   <article class="mb-3 card" id="comment-<%= comment.id %>">
       <div class="card-body">
            <! Podkluchenie time pod soobzheniem!>

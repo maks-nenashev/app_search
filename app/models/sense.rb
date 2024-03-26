@@ -1,4 +1,6 @@
 class Sense < ApplicationRecord
+    belongs_to :user
+    
     has_one_attached :image # Foto!
     has_rich_text :text  #Trix
     

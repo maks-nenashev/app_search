@@ -1,7 +1,8 @@
 class Article < ApplicationRecord
+    belongs_to :user
     
     has_one_attached :image # Foto!
-    has_rich_text :text
+    has_rich_text :text #Trix
     #validates :title, presence: true, length: {minimum: 2} #walidacija
     validates :text, presence: true, length: {minimum: 2}
 
@@ -16,5 +17,5 @@ class Article < ApplicationRecord
       def self.ransackable_associations(auth_object = nil)
         ["comments", "local", "choice"]
         end
-    
-end
+      
+  end

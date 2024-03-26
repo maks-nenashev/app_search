@@ -1,4 +1,5 @@
 class ThingsController < ApplicationController
+    before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
     before_action :set_thing!, only: %i[show destroy edit update]  # @article = Article.find params[:id]   "Refactoring"
                                                                
     def index  
@@ -25,8 +26,7 @@ class ThingsController < ApplicationController
      
     def create # 2: create (отправить форму. POST)   
         @thing = Thing.new(thing_params)
-       # @locals = Local.new
-        #@article = current_user.Article.new(article_params)
+        @thing = current_user.things.build(thing_params)# Connection "user" 
      if @thing.valid?
         @thing.save 
         flash[:success] = "Оголошення Утворино"   

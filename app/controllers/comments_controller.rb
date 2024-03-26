@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-    before_action :set_commentable
+      before_action :authenticate_user!, :only => [:create]# Connection "user" 
+      before_action :set_commentable
         
         def update  # 5 Wnosim izmenrnie w redaktirowanie
                @comment = @commentable.comments.find params[:id]
@@ -24,7 +25,7 @@ class CommentsController < ApplicationController
        def create# 1: create (отправить форму. POST)  
              @commentable = set_commentable
              @comment = @commentable.comments.build comment_params
-           if@comment.save
+             if@comment.save
              flash[:success] = "Коментар Створено!"  #Window Podtwerzdenija
              redirect_to  @commentable  #"perenaprowlenie" 
            else
@@ -48,8 +49,8 @@ class CommentsController < ApplicationController
          
           private
        
-         def comment_params
-           params.require(:comment).permit(:body)
+         def comment_params                        # Connection "user" 
+           params.require(:comment).permit(:body).merge(user: current_user)
          end
          
         def set_commentable

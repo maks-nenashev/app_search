@@ -1,5 +1,6 @@
 class SensesController < ApplicationController
-    before_action :set_sense!, only: %i[show destroy edit update]  # @article = Article.find params[:id]   "Refactoring"
+   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
+   before_action :set_sense!, only: %i[show destroy edit update]  # @article = Article.find params[:id]   "Refactoring"
                                                                
     def index   # 4: Wywod wsech zapisej!
         @senses = Sense.all
@@ -25,8 +26,7 @@ class SensesController < ApplicationController
      
     def create # 2: create (отправить форму. POST)   
         @sense = Sense.new(sense_params)
-        #@locals = Local.new
-        #@article = current_user.Article.new(article_params)
+        @sense = current_user.senses.build(sense_params)# Connection "user" 
      if @sense.valid?
         @sense.save 
         flash[:success] = "Оголошення Утворено!"   #Window Podtwerzdenija
